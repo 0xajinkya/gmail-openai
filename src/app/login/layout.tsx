@@ -1,6 +1,6 @@
 import { LoginLayout } from "@/components";
-import { Box } from "@mui/material";
-import { ReactNode } from "react";
+import { Box, Typography } from "@mui/material";
+import { ReactNode, Suspense } from "react";
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
@@ -13,7 +13,11 @@ const Layout = ({ children }: { children: ReactNode }) => {
         minWidth: "100vw",
       }}
     >
+      <Suspense
+        fallback={<Box><Typography>Some error occurred!</Typography></Box>}
+      >
       <LoginLayout>{children}</LoginLayout>
+      </Suspense>
     </Box>
   );
 };
