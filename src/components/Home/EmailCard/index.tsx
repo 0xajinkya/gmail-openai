@@ -56,23 +56,32 @@ export const EmailCard = ({ email }: { email: IEmail }) => {
             </Typography>
           </Box>
           {email.classification && (
-            <Chip
-              label={email.classification}
+            // <Chip
+            //   label={email.classification}
+            //   sx={{
+            //     color: "white",
+            //     textTransform: "capitalize",
+            //     fontSize: "11px",
+            //     fontWeight: 700,
+            //     backgroundColor:
+            //       email.classification === "important"
+            //         ? "red"
+            //         : email.classification === "social"
+            //         ? "black"
+            //         : email.classification === "general"
+            //         ? "green"
+            //         : "grey",
+            //   }}
+            // />
+            <Typography
               sx={{
-                color: "white",
-                textTransform: "capitalize",
-                fontSize: "11px",
                 fontWeight: 700,
-                backgroundColor:
-                  email.classification === "important"
-                    ? "red"
-                    : email.classification === "social"
-                    ? "black"
-                    : email.classification === "general"
-                    ? "green"
-                    : "grey",
+                fontSize: "11px",
+                color: email.classification === "important" ? "green" : email.classification === "marketing" ? "yellow" : email.classification === "spam" ? "red" : "grey"
               }}
-            />
+            >
+              {email.classification}
+            </Typography>
           )}
         </Box>
       )}
