@@ -18,7 +18,8 @@ export const Paging = ({
         justifyContent: "space-between",
       }}
     >
-      <IconButton onClick={() => prevPage()}>
+
+      <IconButton onClick={() => prevPage()} disabled={page === 0}>
         <ArrowBack
           sx={{
             color: "white",

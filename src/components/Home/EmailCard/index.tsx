@@ -59,7 +59,8 @@ export const EmailCard = ({ email }: { email: IEmail }) => {
             <Typography
               sx={{
                 fontWeight: 700,
-                fontSize: "11px",
+                fontSize: "14px",
+                textTransform: "capitalize",
                 color:
                   email.classification === "important"
                     ? "green"
