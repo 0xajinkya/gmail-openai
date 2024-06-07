@@ -96,6 +96,7 @@ export const LoginProvider = ({ children }: { children: ReactNode }) => {
       const user = await userRes.json();
       localStorage.setItem("access-token", aToken.access_token);
       localStorage.setItem("user", JSON.stringify(user));
+      enqueueSnackbar({message: "User logged in!", variant: "success"});
       router.replace("/login/add-api");
     } catch (error: any) {
       enqueueSnackbar({
