@@ -39,12 +39,9 @@ export const GET = async (req: Request) => {
         pageToken: nextPageToken,
       })) as any;
 
-      //console.log(res);
-
       if (res.data.messages && res.data.messages.length > 0) {
         const messages = res.data.messages;
 
-        // Append messages to the email list if they are within the desired range
         for (let i = 0; i < messages.length; i++) {
           if (currentIndex >= start && currentIndex <= end) {
             emails.push(messages[i]);
@@ -58,7 +55,7 @@ export const GET = async (req: Request) => {
 
       nextPageToken = res.data.nextPageToken;
       if (!nextPageToken) {
-        break; // No more pages, exit loop
+        break;
       }
     }
 
@@ -74,7 +71,6 @@ export const GET = async (req: Request) => {
       status: 200,
     });
   } catch (error) {
-    //console.log(error);
     return new Response("An error occurred", {
       status: 500,
     });

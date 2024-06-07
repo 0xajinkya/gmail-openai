@@ -123,7 +123,7 @@ export const HomeProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const prevPage = () => {
-    setPage((pg) => --pg);
+    setPage((pg) => pg === 0 ? pg : --pg);
   };
 
   const changeTotal = (tt: number) => {
