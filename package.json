@@ -14,7 +14,9 @@
     "@mui/icons-material": "^5.15.19",
     "@mui/lab": "^5.0.0-alpha.170",
     "@mui/material": "^5.15.19",
+    "fs": "^0.0.1-security",
     "googleapis": "^140.0.0",
+    "net": "^1.0.2",
     "next": "14.2.3",
     "notistack": "^3.0.1",
     "react": "^18",
@@ -27,5 +29,13 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "typescript": "^5"
-  }
+  },
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false,
+    "child_process": false,
+    "net": false,
+    "tls": false
+}
 }

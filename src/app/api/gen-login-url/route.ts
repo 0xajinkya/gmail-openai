@@ -1,5 +1,13 @@
-import { OAUTH_REDIRECT_URL, authScopes } from "@/constants";
-import { oauth2ClientForLogin } from "@/lib";
+import { OAUTH_CLIENT_ID, OAUTH_CLIENT_SECRET, OAUTH_REDIRECT_URL, authScopes } from "@/constants";
+import { google } from "googleapis";
+
+const oauth2ClientForLogin = new google.auth.OAuth2(
+  OAUTH_CLIENT_ID,
+  OAUTH_CLIENT_SECRET,
+  OAUTH_REDIRECT_URL
+);
+// export const oauth2Client = new google.auth.OAuth2();
+
 
 export async function GET(req: Request) {
   try {

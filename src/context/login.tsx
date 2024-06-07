@@ -5,8 +5,9 @@ import {
   OAUTH_CLIENT_SECRET,
   OAUTH_REDIRECT_URL,
   OAUTH_TOKEN_URL,
+  OAUTH_USERINFO_URL,
 } from "@/constants";
-import { getAccessToken, getOpenAPIKey } from "@/lib/local";
+import { getAccessToken, getOpenAIAPIKey } from "@/lib";
 import { useSearchParams, useRouter } from "next/navigation";
 import { enqueueSnackbar } from "notistack";
 import {
@@ -31,6 +32,7 @@ export const LoginContext = createContext<ILogin>({
 
 export const LoginProvider = ({ children }: { children: ReactNode }) => {
   const searchParams = useSearchParams();
+  // const cookieStore = cookies();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -60,7 +62,7 @@ export const LoginProvider = ({ children }: { children: ReactNode }) => {
     const clientSecret = OAUTH_CLIENT_SECRET;
     const redirectUri = OAUTH_REDIRECT_URL;
     const tokenUrl = OAUTH_TOKEN_URL;
-    // const userInfoUrl = OAUTH_USERINFO_URL;
+    const userInfoUrl = OAUTH_USERINFO_URL;
 
     const params = new URLSearchParams();
     if (code) {
@@ -70,28 +72,30 @@ export const LoginProvider = ({ children }: { children: ReactNode }) => {
       params.append("redirect_uri", redirectUri as string);
       params.append("grant_type", "authorization_code");
     }
-
     try {
-      const res = await fetch(tokenUrl as string, {
+      const aTokenRes = await fetch(tokenUrl as string, {
         method: "POST",
         body: params,
       });
+      if (!aTokenRes.ok) {
+        throw new Error("Unable to complete authentication, try again!");
+      }
+      const aToken = await aTokenRes.json();
 
-      const resBody = await res.json();
-      const accessToken = resBody.access_token;
-      console.log(accessToken);
+      const userRes = await fetch(userInfoUrl as string, {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + aToken.access_token,
+        },
+        cache: "no-cache",
+      });
 
-      // const userInfoRes = await fetch(userInfoUrl as string, {
-      //   method: "GET",
-      //   headers: {
-      //     Authorization: "Bearer " + accessToken,
-      //   },
-      //   cache: "no-cache",
-      // });
-
-      // const userInfoBody = await userInfoRes.json();
-      // console.log(userInfoBody);
-      localStorage?.setItem("access-token", accessToken);
+      if (!userRes.ok) {
+        throw new Error("Cannot fetch user information, try again!");
+      }
+      const user = await userRes.json();
+      localStorage.setItem("access-token", aToken.access_token);
+      localStorage.setItem("user", JSON.stringify(user));
       router.replace("/login/add-api");
     } catch (error: any) {
       enqueueSnackbar({
@@ -104,14 +108,17 @@ export const LoginProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    if (getAccessToken() && getOpenAPIKey()) {
-      router.replace("/");
-    } else if (getAccessToken() && !getOpenAPIKey()) {
-      router.replace("/login/add-api");
-    } else if (!getAccessToken() && !getOpenAPIKey()) {
-      router.replace("/login");
-    } else if (searchParams.get("code")) {
+    const accessToken = getAccessToken();
+    const openAIKey = getOpenAIAPIKey();
+
+    if (searchParams.get("code")) {
       fetchUserData(searchParams.get("code"));
+    } else if (accessToken && openAIKey) {
+      router.replace("/");
+    } else if (accessToken && !openAIKey) {
+      router.replace("/login/add-api");
+    } else if (!accessToken && !openAIKey) {
+      router.replace("/login");
     } else {
       return;
     }

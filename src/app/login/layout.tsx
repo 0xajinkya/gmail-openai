@@ -14,9 +14,13 @@ const Layout = ({ children }: { children: ReactNode }) => {
       }}
     >
       <Suspense
-        fallback={<Box><Typography>Some error occurred!</Typography></Box>}
+        fallback={
+          <Box>
+            <Typography>Some error occurred!</Typography>
+          </Box>
+        }
       >
-      <LoginLayout>{children}</LoginLayout>
+        <LoginLayout>{children}</LoginLayout>
       </Suspense>
     </Box>
   );
