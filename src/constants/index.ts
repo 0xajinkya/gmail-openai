@@ -8,3 +8,5 @@ export const authScopes = [
   " https://www.googleapis.com/auth/userinfo.profile",
   "https://www.googleapis.com/auth/gmail.readonly",
 ];
+export const OPENAI_ORG_ID = process.env.NEXT_PUBLIC_OPENAI_ORG_ID;
+export const OPENAI_API_KEY = process.env.NEXT_PUBLIC_OPENAI_API_KEY

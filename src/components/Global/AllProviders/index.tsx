@@ -1,5 +1,6 @@
 "use client";
 
+import { GlobalProvider } from "@/context";
 import { theme } from "@/utils";
 import { Box, ThemeProvider } from "@mui/material";
 import { SnackbarProvider } from "notistack";
@@ -7,12 +8,22 @@ import { ReactNode } from "react";
 
 export const AllProviders = ({ children }: { children: ReactNode }) => {
   return (
-    <Box>
-      <ThemeProvider
-        theme={theme}
+    <ThemeProvider theme={theme}>
+      <Box
+        sx={{
+          color: "white",
+          fontFamily: "Ubuntu",
+          minHeight: "100vh",
+          minWidth: "100vw",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
       >
-      <SnackbarProvider>{children}</SnackbarProvider>
-      </ThemeProvider>
-    </Box>
+        <SnackbarProvider>
+          <GlobalProvider>{children}</GlobalProvider>
+        </SnackbarProvider>
+      </Box>
+    </ThemeProvider>
   );
 };

@@ -42,7 +42,7 @@ export const LoginProvider = ({ children }: { children: ReactNode }) => {
       message: "OpenAI API saved successfully!",
       variant: "success",
     });
-    router.replace("/");
+    location.replace("/");
     return;
   };
 
@@ -50,7 +50,7 @@ export const LoginProvider = ({ children }: { children: ReactNode }) => {
     try {
       const res = await fetch("/api/gen-login-url", { method: "GET" });
       const resBody = await res.json();
-      window.open(resBody.url, "_blank");
+      window.open(resBody.url, "_self");
     } catch (error) {
       console.log(error);
     }
@@ -96,7 +96,7 @@ export const LoginProvider = ({ children }: { children: ReactNode }) => {
       const user = await userRes.json();
       localStorage.setItem("access-token", aToken.access_token);
       localStorage.setItem("user", JSON.stringify(user));
-      enqueueSnackbar({message: "User logged in!", variant: "success"});
+      enqueueSnackbar({ message: "User logged in!", variant: "success" });
       router.replace("/login/add-api");
     } catch (error: any) {
       enqueueSnackbar({

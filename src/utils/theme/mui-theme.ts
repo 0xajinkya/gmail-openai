@@ -10,7 +10,7 @@ export const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: "Raleway",
+    fontFamily: "Ubuntu",
     fontWeightRegular: 500,
     fontWeightBold: 700,
     fontWeightLight: 400,

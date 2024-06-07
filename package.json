@@ -16,9 +16,11 @@
     "@mui/material": "^5.15.19",
     "fs": "^0.0.1-security",
     "googleapis": "^140.0.0",
+    "lottie-react": "^2.4.0",
     "net": "^1.0.2",
     "next": "14.2.3",
     "notistack": "^3.0.1",
+    "openai": "^4.49.1",
     "react": "^18",
     "react-dom": "^18"
   },
@@ -37,5 +39,5 @@
     "child_process": false,
     "net": false,
     "tls": false
-}
+  }
 }

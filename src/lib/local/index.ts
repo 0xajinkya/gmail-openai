@@ -1,5 +1,5 @@
 export const getAccessToken = () => {
-  if (window) {
+  if (typeof window !== "undefined") {
     const aT = localStorage.getItem("access-token");
     return aT === null ? false : aT;
   }
@@ -7,7 +7,7 @@ export const getAccessToken = () => {
 };
 
 export const getOpenAIAPIKey = () => {
-  if (window) {
+  if (typeof window !== "undefined") {
     const op = localStorage.getItem("openai-key");
     return op === null ? false : op;
   }
@@ -15,7 +15,7 @@ export const getOpenAIAPIKey = () => {
 };
 
 export const getUser = () => {
-  if (window) {
+  if (typeof window !== "undefined") {
     const usr = localStorage.getItem("user");
     return usr === null ? false : JSON.parse(usr);
   }
