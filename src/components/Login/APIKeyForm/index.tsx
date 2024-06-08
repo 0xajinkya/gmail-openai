@@ -5,7 +5,6 @@ import { Box, Button, InputBase, Typography } from "@mui/material";
 import { useContext, useState } from "react";
 
 export const APIKeyForm = () => {
-
   const { saveOpenAPIKey } = useContext(LoginContext);
 
   const [key, setKey] = useState("");
@@ -16,6 +15,7 @@ export const APIKeyForm = () => {
         display: "flex",
         flexDirection: "column",
         gap: "12px",
+        width: ["250px"],
       }}
     >
       <InputBase
@@ -25,17 +25,18 @@ export const APIKeyForm = () => {
           borderRadius: "12px",
           px: "16px",
           py: "8px",
-          fontFamily: "Ubuntu"
+          fontFamily: "Ubuntu",
         }}
         onChange={(e) => setKey(e.target.value)}
       />
       <Typography
         sx={{
           fontSize: "11px",
-          fontWeight: 600
+          fontWeight: 600,
         }}
       >
-        Note: Put in your OpenAI API key, minimum 45 characters starting with &apos;sk-&apos;
+        Note: Put in your OpenAI API key, minimum 45 characters starting with
+        &apos;sk-&apos;
       </Typography>
       <Button
         sx={{
@@ -51,7 +52,9 @@ export const APIKeyForm = () => {
           },
         }}
         onClick={() => saveOpenAPIKey(key)}
-        disabled={key.length < 45}
+        disabled={
+          key.length >= 45 ? (key.slice(0, 3) === "sk-" ? false : true) : true
+        }
       >
         Add Your OpenAI API Key
       </Button>
