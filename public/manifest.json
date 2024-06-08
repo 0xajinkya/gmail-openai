@@ -1,0 +1,29 @@
+{
+    "id": 1,
+    "name": "Gmail - OpenAI",
+    "short_name": "GoI",
+    "icons": [
+        {
+            "src": "/next.svg",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "/next.svg",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "/next.svg",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#FFFFFF",
+    "background_color": "#010120",
+    "start_url": "/",
+    "display": "standalone",
+    "orientation": "portrait",
+    "prefer_related_applications": false
+}
