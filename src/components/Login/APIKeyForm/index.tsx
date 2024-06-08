@@ -43,6 +43,7 @@ export const APIKeyForm = () => {
           },
         }}
         onClick={() => saveOpenAPIKey(key)}
+        disabled={key.length < 45}
       >
         Add Your OpenAI API Key
       </Button>
