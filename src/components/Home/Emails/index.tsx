@@ -1,15 +1,17 @@
 import { IEmail } from "@/context";
 import { Box, CircularProgress } from "@mui/material";
 import { EmailCard } from "../EmailCard";
+import { Dispatch, SetStateAction } from "react";
 
 export const Emails = ({
   emails,
   loading,
+  setActiveEmail,
 }: {
   emails: IEmail[];
   loading: boolean;
+  setActiveEmail: Dispatch<SetStateAction<IEmail | null>>;
 }) => {
-
   console.log(emails);
 
   return (
@@ -26,7 +28,10 @@ export const Emails = ({
       className={"scrollable"}
     >
       {loading && <CircularProgress sx={{ color: "white" }} />}
-      {!loading && emails?.map((e, idx) => <EmailCard key={idx} email={e} />)}
+      {!loading &&
+        emails?.map((e, idx) => (
+          <EmailCard key={idx} email={e} setActiveEmail={setActiveEmail} />
+        ))}
     </Box>
   );
 };

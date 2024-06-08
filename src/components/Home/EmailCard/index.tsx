@@ -1,9 +1,16 @@
 import { IEmail } from "@/context";
 import { parseEmail } from "@/lib";
 import { PasswordRounded } from "@mui/icons-material";
-import { Box, Chip, Typography } from "@mui/material";
+import { Box, Card, Chip, Typography } from "@mui/material";
+import { Dispatch, SetStateAction } from "react";
 
-export const EmailCard = ({ email }: { email: IEmail }) => {
+export const EmailCard = ({
+  email,
+  setActiveEmail,
+}: {
+  email: IEmail;
+  setActiveEmail: Dispatch<SetStateAction<IEmail | null>>;
+}) => {
   const parsedFrom = parseEmail(
     email.payload.headers.filter((vl) => vl.name === "From")[0].value
   );
@@ -18,7 +25,9 @@ export const EmailCard = ({ email }: { email: IEmail }) => {
         display: "flex",
         flexDirection: "column",
         gap: "12px",
+        cursor: "pointer",
       }}
+      onClick={() => setActiveEmail(email)}
     >
       {typeof parsedFrom === "string" ? (
         <Typography>{parsedFrom}</Typography>

@@ -9,6 +9,7 @@ import { GlobalContext, HomeContext, IUser } from "@/context";
 import { ActionSec } from "../ActionSec";
 import { Emails } from "../Emails";
 import { Paging } from "../Paging";
+import { EmailModal } from "../EmailModal";
 
 export const HomePage = () => {
   const { user, logOut } = useContext(GlobalContext);
@@ -21,6 +22,8 @@ export const HomePage = () => {
     prevPage,
     nextPage,
     classify,
+    setActiveEmail,
+    activeEmail,
   } = useContext(HomeContext);
 
   return (
@@ -42,8 +45,13 @@ export const HomePage = () => {
             num={total}
             classify={classify}
           />
-          <Emails emails={emails} loading={loading} />
+          <Emails
+            emails={emails}
+            loading={loading}
+            setActiveEmail={setActiveEmail}
+          />
           <Paging page={page} nextPage={nextPage} prevPage={prevPage} />
+          {activeEmail !== null && <EmailModal activeEmail={activeEmail} setActiveEmail={setActiveEmail}/>}
         </Box>
       )}
     </Box>

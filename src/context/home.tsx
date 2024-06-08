@@ -1,8 +1,10 @@
 "use client";
 
 import {
+  Dispatch,
   ReactNode,
   Reducer,
+  SetStateAction,
   createContext,
   useEffect,
   useReducer,
@@ -44,6 +46,7 @@ export type EmailCat =
 export interface IEmailPayload {
   body: {
     size: number;
+    data: string
   };
   filename: string;
   headers: IPHeader[];
@@ -71,6 +74,8 @@ interface IHome {
   loading: boolean;
   page: number;
   classify: () => void;
+  setActiveEmail: Dispatch<SetStateAction<IEmail | null>>;
+  activeEmail: IEmail | null,
 }
 
 type FormAction = {
@@ -106,12 +111,14 @@ export const HomeContext = createContext<IHome>({
   loading: false,
   page: 0,
   classify: () => {},
+  setActiveEmail: () => {},
+  activeEmail: null
 });
 
 export const HomeProvider = ({ children }: { children: ReactNode }) => {
   const [page, setPage] = useState(0);
   const [total, setTotal] = useState(5);
-  // const [emails, setEmails] = useState<IEmail[] | []>([]);
+  const [activeEmail, setActiveEmail] = useState<IEmail | null>(null);
   const [emails, emailsDispatch] = useReducer<Reducer<IEmail[], FormAction>>(
     emailReducer,
     []
@@ -123,7 +130,7 @@ export const HomeProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const prevPage = () => {
-    setPage((pg) => pg === 0 ? pg : --pg);
+    setPage((pg) => (pg === 0 ? pg : --pg));
   };
 
   const changeTotal = (tt: number) => {
@@ -287,6 +294,8 @@ export const HomeProvider = ({ children }: { children: ReactNode }) => {
         loading,
         page,
         classify,
+        setActiveEmail,
+        activeEmail
       }}
     >
       {children}
