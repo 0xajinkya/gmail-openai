@@ -1,6 +1,11 @@
 import { APIKeyForm } from "@/components";
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 
+/**
+ * Page component representing the page for adding an OpenAI API key.
+ * This component renders an APIKeyForm component wrapped in a Box container.
+ * @returns JSX.Element
+ */
 const Page = () => {
   return (
     <Box
@@ -10,6 +15,7 @@ const Page = () => {
         gap: "12px",
       }}
     >
+      {/* Render the APIKeyForm component */}
       <APIKeyForm />
     </Box>
   );

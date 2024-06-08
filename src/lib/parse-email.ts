@@ -1,19 +1,17 @@
-export function parseEmail(input: string) {
-    // Regular expression to match the name and email
-    const emailRegex = /^(.*)\s<(.+)>$/;
-  
-    // Trim the input to remove any leading or trailing whitespace
-    input = input.trim();
-  
-    // Match the input string against the regex
-    const match = input.match(emailRegex);
-  
-    // If a match is found, extract the name and email
-    if (match) {
+/**
+ * Parses an email string to extract the name and email address.
+ * @param {string} input - The input email string to parse.
+ * @returns {{ name: string, email: string } | string} - An object containing the name and email if parsing is successful, or the original input string if parsing fails.
+ */
+export function parseEmail(input: string): { name: string, email: string } | string {
+  const emailRegex = /^(.*)\s<(.+)>$/;
+  input = input.trim();
+  const match = input.match(emailRegex);
+  if (match) {
       const name = match[1].trim();
       const email = match[2].trim();
       return { name, email };
-    } else {
+  } else {
       return input;
-    }
   }
+}

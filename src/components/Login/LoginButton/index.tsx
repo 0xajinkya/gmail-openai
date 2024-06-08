@@ -7,18 +7,24 @@ import { LoadingButton } from "@mui/lab";
 import { Button, CircularProgress } from "@mui/material";
 import { useContext } from "react";
 
+/**
+ * Component for rendering a login button.
+ * It displays a loading spinner when loading, and a button with Google icon when not loading.
+ */
 export const LoginButton = () => {
   const { handleLogin, loading } = useContext(LoginContext);
 
   return (
     <>
       {loading ? (
+        // Display a circular progress indicator when loading
         <CircularProgress
           sx={{
             color: "white",
           }}
         />
       ) : (
+        // Display a loading button with Google icon when not loading
         <LoadingButton
           onClick={handleLogin}
           sx={{
@@ -38,6 +44,7 @@ export const LoginButton = () => {
           loading={loading}
         >
           Login With
+          {/* Render Google icon */}
           <ImgIcon
             path="/icons/google.svg"
             width={30}

@@ -23,6 +23,9 @@ import { enqueueSnackbar } from "notistack";
 import { TAction, IEmail, IHome } from "@/utils";
 import { emailReducer } from "./reducer";
 
+/**
+ * Context for managing home-related state and functions.
+ */
 export const HomeContext = createContext<IHome>({
   nextPage: () => {},
   prevPage: () => {},
@@ -36,6 +39,11 @@ export const HomeContext = createContext<IHome>({
   activeEmail: null,
 });
 
+/**
+ * Provides the home context to its children components.
+ * @param {Object} props - The props for the HomeProvider component.
+ * @param {ReactNode} props.children - The children components to be wrapped by the provider.
+ */
 export const HomeProvider = ({ children }: { children: ReactNode }) => {
   const [page, setPage] = useState(0);
   const [total, setTotal] = useState(5);
@@ -46,18 +54,31 @@ export const HomeProvider = ({ children }: { children: ReactNode }) => {
   );
   const [loading, setLoading] = useState(false);
 
+  /**
+   * Advances to the next page of emails.
+   */
   const nextPage = () => {
     setPage((pg) => ++pg);
   };
 
+  /**
+   * Moves to the previous page of emails.
+   */
   const prevPage = () => {
     setPage((pg) => (pg === 0 ? pg : --pg));
   };
 
+  /**
+   * Changes the total number of emails per page.
+   * @param {number} tt - The new total number of emails per page.
+   */
   const changeTotal = (tt: number) => {
     setTotal(() => tt);
   };
 
+  /**
+   * Classifies emails using the OpenAI API.
+   */
   const classify = async () => {
     try {
       const refactoredArray = refactorArray(emails);

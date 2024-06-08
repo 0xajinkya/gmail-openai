@@ -52,6 +52,13 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
 };
 
+/**
+ * Root layout component for the application.
+ * This component provides global metadata, including title, description, author information,
+ * and OpenGraph properties. It also sets the theme color and renders the child components wrapped by AllProviders.
+ * @param children The child components to be rendered within the layout.
+ * @returns JSX.Element
+ */
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -60,9 +67,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-      <meta name="theme-color" content="#ffffff" />
+        {/* Set the theme color for the application */}
+        <meta name="theme-color" content="#ffffff" />
       </head>
       <body>
+        {/* Wrap the child components with AllProviders for global context and theming */}
         <AllProviders>{children}</AllProviders>
       </body>
     </html>
