@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     "dall-e",
     "chat gpt",
   ],
-  manifest: "/manifest.json"
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
@@ -59,6 +59,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+      <meta name="theme-color" content="#ffffff" />
+      </head>
       <body>
         <AllProviders>{children}</AllProviders>
       </body>
