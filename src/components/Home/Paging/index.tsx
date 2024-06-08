@@ -30,7 +30,7 @@ export const Paging = ({
       <IconButton onClick={() => prevPage()} disabled={page === 0}>
         <ArrowBack
           sx={{
-            color: "white",
+            color: page === 0 ? "grey" : "white",
           }}
         />
       </IconButton>
