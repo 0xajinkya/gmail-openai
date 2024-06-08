@@ -11,17 +11,19 @@ export const OutlinedButton = ({
     title,
     styles,
     onClick,
+    disabled
 }: {
     title: string;
     styles?: React.CSSProperties;
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
+    disabled?: boolean
 }) => {
     return (
         <Button
             sx={{
                 borderRadius: "15px",
-                border: "1px solid white",
-                color: "white",
+                border: `1px solid ${disabled ? "grey" : "white"}`,
+                color: disabled ? "grey" : "white",
                 whiteSpace: "nowrap",
                 fontSize: ["12px", "auto"],
                 textTransform: "capitalize",
@@ -32,6 +34,7 @@ export const OutlinedButton = ({
             }}
             onClick={onClick}
             variant="outlined"
+            disabled={disabled ?? false}
         >
             {title}
         </Button>
