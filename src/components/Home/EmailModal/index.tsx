@@ -22,7 +22,7 @@ export const EmailModal = ({
       open={Boolean(activeEmail)}
       sx={{
         display: "flex",
-        justifyContent: ["center", "flex-end"],
+        justifyContent: ["flex-start", "flex-end"],
         alignItems: ["center"],
       }}
       onClose={() => close()}
