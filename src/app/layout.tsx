@@ -49,6 +49,7 @@ export const metadata: Metadata = {
     "dall-e",
     "chat gpt",
   ],
+  manifest: "/manifest.json"
 };
 
 export default function RootLayout({
