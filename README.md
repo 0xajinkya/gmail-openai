@@ -64,6 +64,8 @@ If your OpenAI API key is **valid** and **not expired**, the emails will be clas
 
 You can **adjust the number of emails to fetch using the dropdown menu** below the avatar section. Selecting a number will fetch that many emails. Use the paging options at the bottom of the page to navigate through the fetched emails. **Clicking the forward arrow** will increment the page number, **fetching the next set of emails**, while **clicking the backward arrow** will decrement the page number.
 
+Besides, I have also added the minute functionality and made it's **Progressive Web App(PWA)** version available. You just have to look in the search bar of browser in desktop and click the desktop and plus button or click the three dot to the top right and click on Install the app, in case you are on smartphone.
+
 ### Enjoy exploring your classified emails!
 
 
