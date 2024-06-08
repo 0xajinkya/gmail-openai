@@ -1,7 +1,7 @@
 "use client";
 
-import { IUser } from "@/context";
 import { getUser } from "@/lib";
+import { IUser } from "@/utils";
 import { Avatar, Box, Button, Typography } from "@mui/material";
 
 export const Header = ({user, logOut}: {user: IUser, logOut: () => void}) => {
@@ -35,7 +35,7 @@ export const Header = ({user, logOut}: {user: IUser, logOut: () => void}) => {
             gap: "4px",
           }}
         >
-          <Typography sx={{}}>{user.name}</Typography>
+          <Typography >{user.name}</Typography>
           <Typography
             sx={{
               color: "rgba(255, 255, 255, 0.6)",

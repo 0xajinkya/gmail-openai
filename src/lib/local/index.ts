@@ -21,3 +21,20 @@ export const getUser = () => {
   }
   return false;
 };
+
+export const setToLocalStorage = (
+  key: "access-token" | "openai-key" | "user",
+  value: string
+) => {
+  if (typeof window !== "undefined") {
+    localStorage.setItem(key, value);
+  }
+  return;
+};
+
+export const clearLocalStorage = () => {
+  if (typeof window !== "undefined") {
+    localStorage.clear();
+  }
+  return;
+};

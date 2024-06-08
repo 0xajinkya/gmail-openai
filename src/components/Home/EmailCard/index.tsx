@@ -1,7 +1,6 @@
-import { IEmail } from "@/context";
 import { parseEmail } from "@/lib";
-import { PasswordRounded } from "@mui/icons-material";
-import { Box, Card, Chip, Typography } from "@mui/material";
+import { IEmail } from "@/utils";
+import { Box, Typography } from "@mui/material";
 import { Dispatch, SetStateAction } from "react";
 
 export const EmailCard = ({

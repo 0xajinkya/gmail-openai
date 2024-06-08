@@ -5,11 +5,13 @@ import { Box } from "@mui/material";
 import { NotLogin } from "../NotLogin";
 import { useContext, useEffect, useState } from "react";
 import { Header } from "../Header";
-import { GlobalContext, HomeContext, IUser } from "@/context";
+import { GlobalContext, HomeContext } from "@/context";
 import { ActionSec } from "../ActionSec";
 import { Emails } from "../Emails";
 import { Paging } from "../Paging";
 import { EmailModal } from "../EmailModal";
+import { IUser } from "@/utils";
+
 
 export const HomePage = () => {
   const { user, logOut } = useContext(GlobalContext);

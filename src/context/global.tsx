@@ -1,21 +1,13 @@
 "use client";
 
-import { getAccessToken, getOpenAIAPIKey, getUser } from "@/lib";
-import { useRouter } from "next/navigation";
+import {
+  clearLocalStorage,
+  getAccessToken,
+  getOpenAIAPIKey,
+  getUser,
+} from "@/lib";
+import { IGlobal, IUser } from "@/utils";
 import { ReactNode, createContext, useEffect, useState } from "react";
-
-export interface IUser {
-  name: string;
-  email: string;
-  picture: string;
-}
-
-interface IGlobal {
-  user: IUser | boolean;
-  accessToken: string | boolean;
-  openAIAPI: string | boolean;
-  logOut: () => void;
-}
 
 export const GlobalContext = createContext<IGlobal>({
   user: false,
@@ -26,10 +18,8 @@ export const GlobalContext = createContext<IGlobal>({
 
 export const GlobalProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<IUser | boolean>(false);
-
   const [accessToken, setAccessToken] = useState<string | boolean>(false);
   const [openAIAPI, setOpenAIAPI] = useState<string | boolean>(false);
-  const router = useRouter();
 
   useEffect(() => {
     setUser(getUser());
@@ -38,13 +28,12 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const logOut = () => {
-    localStorage.clear();
+    clearLocalStorage();
     setUser(false);
     setAccessToken(false);
     setOpenAIAPI(false);
-    // router.refresh();
   };
-  
+
   return (
     <GlobalContext.Provider
       value={{

@@ -1,7 +1,7 @@
-import { IEmail } from "@/context";
 import { Box, CircularProgress } from "@mui/material";
 import { EmailCard } from "../EmailCard";
 import { Dispatch, SetStateAction } from "react";
+import { IEmail } from "@/utils";
 
 export const Emails = ({
   emails,
