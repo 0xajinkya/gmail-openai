@@ -1,7 +1,7 @@
 "use client";
 
 import { LoginContext } from "@/context";
-import { Box, Button, InputBase } from "@mui/material";
+import { Box, Button, InputBase, Typography } from "@mui/material";
 import { useContext, useState } from "react";
 
 export const APIKeyForm = () => {
@@ -29,6 +29,14 @@ export const APIKeyForm = () => {
         }}
         onChange={(e) => setKey(e.target.value)}
       />
+      <Typography
+        sx={{
+          fontSize: "11px",
+          fontWeight: 600
+        }}
+      >
+        Note: Put in your OpenAI API key, minimum 45 characters starting with &apos;sk-&apos;
+      </Typography>
       <Button
         sx={{
           backgroundColor: "white",
