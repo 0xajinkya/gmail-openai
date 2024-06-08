@@ -40,7 +40,7 @@ export const APIKeyForm = () => {
           fontWeight: 600,
         }}
       >
-        Note: Put in your OpenAI API key, minimum 45 characters starting with 'sk-'
+        Note: Put in your OpenAI API key, minimum 45 characters starting with &apos;sk-&apos;
       </Typography>
       {/* Button to save the API key */}
       <Button
